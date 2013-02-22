@@ -1201,6 +1201,8 @@ static NSOperationQueue *sharedQueue = nil;
     if([[[[self url] scheme] lowercaseString] isEqualToString:@"https"]) {
 
         NSMutableDictionary *sslProperties = [NSMutableDictionary dictionaryWithCapacity:1];
+        //Make it work for iOS 5
+        [sslProperties setObject:@"kCFStreamSocketSecurityLevelTLSv1_0SSLv3" forKey:(NSString*)kCFStreamSSLLevel];
 
         // Tell CFNetwork not to validate SSL certificates
         if (![self validatesSecureCertificate]) {
